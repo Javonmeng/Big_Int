@@ -2,34 +2,24 @@
 using namespace std;
 char str1[MAXN],str2[MAXN],res[MAX];
 
-void ReadData(){
-	ifstream myfile;
-	int i = 0;
-	char c;
-	myfile.open("/data.txt",ios::in);
 
-	if(!myfile){
-		cout << "Unable to open myfile";
-	}
-	while(!myfile.eof()){
-		myfile>>c;
-		str1[i] = c;
-		i++;
-	}
-}
 int Inspect(char *s)
 {
 	int i=0;
-	if (s==NULL)
+	if (s==NULL){
+		printf("INPUT ERROR\n");
 		return ERROR;
+	}
 	while(s[i]!='\0'){
 		if(s[i]>='0'&&s[i]<='9')
 			i++;
 		else if(i == 0){
 			if(s[i] == '+' || s[i] =='-')
 				i++;
-			else
+			else{
+				printf("INPUT ERROR\n");
 				return ERROR;
+			}
 		}
 		else{
 			return OK;
@@ -42,11 +32,13 @@ int InspectOp(char op){
 	
 		return OK;
 	}
-	else
+	else{
+		printf("INPUT ERROR\n");
 		return ERROR;
+	}
 }
 int main(){
-	char res[MAX1],res1[MAX1];
+	char res[MAX1];
 	char tmp[MAX],extra[MAX];
 	char op,ch;
 	FILE *fp;
@@ -79,7 +71,7 @@ int main(){
 	op = ch;
 	printf("%s\n",str1);
 	printf("%s\n",str2);
-	printf("%c",op);
+	printf("%c\n",op);
 
 	if(Inspect(str1)&&Inspect(str2)&&InspectOp(op)){
 	

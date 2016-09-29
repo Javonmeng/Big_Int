@@ -65,7 +65,9 @@ void Sub(char *leftVal,char *rightVal, int *resBuf){//左式比右式大
 }
 
 void Big_Add(char *leftVal, char *rightVal, char *res){
-	int resBuf[MAX];
+	int len0;
+	len0 = strlen(leftVal) > strlen(rightVal) ? strlen(leftVal) : strlen(rightVal);
+	int resBuf[len0];
 	if((leftVal[0] >= '0' && leftVal[0] <= '9') && (rightVal[0] >= '0' && rightVal[0] <='9')){
 		Add(leftVal, rightVal, resBuf);
 		for(int i = maxlen - 1; i >= 0; --i)

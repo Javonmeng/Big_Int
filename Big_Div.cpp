@@ -59,7 +59,7 @@ void Big_Div(char *leftVal, char *rightVal, char *res, char *extra){
 		strcpy(res,"0");
 		extra = leftVal;
 	}
-	else if(len ==len2){
+	else if(len1 ==len2){
 		Div(leftVal, rightVal, c, extra);
 		res[0] = c + '0';
 	}
