@@ -37,15 +37,13 @@ int Inspect(char *s)
 	}
 	return OK;	
 }
-int InspectOp(char *op){
-	if(op[0]=='+'||op[0]=='-'||op[0]=='*'||op[0]=='/'){
-		if(op[1]!='\0'){
-			return 0;
-		} 
-		return 1;
+int InspectOp(char op){
+	if(op=='+'||op=='-'||op=='*'||op=='/'){		
+	
+		return OK;
 	}
 	else
-		return 0;
+		return ERROR;
 }
 int main(){
 	char res[MAX1],res1[MAX1];
@@ -82,7 +80,9 @@ int main(){
 	printf("%s\n",str1);
 	printf("%s\n",str2);
 	printf("%c",op);
-	getchar();
+
+	if(Inspect(str1)&&Inspect(str2)&&InspectOp(op)){
+	
    	switch(op){
    		case '+':
    			Big_Add(str1,str2,res);
@@ -115,4 +115,6 @@ int main(){
    				
    			break;
 		}
+		
+	}
 }
