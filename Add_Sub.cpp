@@ -8,7 +8,7 @@ void Trans(char *str1,char *str2,int A[MAX],int B[MAX]){
 		A[i] = str1[len1 - i - 1] - '0';
 	for(int i = 0; i < len2; ++i)
 		B[i] = str2[len2  - i - 1] - '0';
-	//è¡¥0
+	//µ¹ÖÃ 
 	for(int i = len1; i < maxlen; ++i)
 		A[i] = 0;
 	for(int i = len2; i < maxlen; ++i)
@@ -19,7 +19,7 @@ void Adjust_Add(int *res){
 		res[i + 1] += res[i] / 10;
 		res[i] %= 10;
 	}
-	//åŽ»é™¤å¤šä½™çš„0
+	//µ÷Õû¼Ó·¨Êä³ö 
 	while(res[maxlen-1] == 0)
 		maxlen--;
 }
@@ -33,7 +33,7 @@ void Adjust_Sub(int *res){
 		borrow = 0;
 		res[i] = (res[i]+10)%10;
 	}
-	//åŽ»é™¤å¤šä½™çš„0
+	//µ÷Õû¼õ·¨Êä³ö 
 	while(res[maxlen-1] == 0)
 		maxlen--;
 }
@@ -49,14 +49,14 @@ int isLeftBigger(char *str1,char *str2){
 			return NO;
 	}
 }
-void Add(char *leftVal,char *rightVal,int *resBuf){
+void Add(char *leftVal,char *rightVal,int *resBuf){//ÎÞ·ûºÅ¼Ó·¨ 
 	int A[MAX],B[MAX];
 	Trans(leftVal,rightVal,A,B);
 	for(int i = 0; i < maxlen; ++i)
 		resBuf[i] = A[i] + B[i];
 	Adjust_Add(resBuf);
 }
-void Sub(char *leftVal,char *rightVal, int *resBuf){//å·¦å¼æ¯”å³å¼å¤§
+void Sub(char *leftVal,char *rightVal, int *resBuf){//ÎÞ·ûºÅ¼õ·¨ 
 	int A[MAX],B[MAX];
 	Trans(leftVal,rightVal,A,B);
 	for(int i = 0; i < maxlen; ++i)
@@ -64,7 +64,7 @@ void Sub(char *leftVal,char *rightVal, int *resBuf){//å·¦å¼æ¯”å³å¼å¤§
 	Adjust_Sub(resBuf);
 }
 
-void Big_Add(char *leftVal, char *rightVal, char *res){
+void Big_Add(char *leftVal, char *rightVal, char *res){//¼õ·¨¿´×ö¼Ó·¨ 
 	int len0;
 	len0 = strlen(leftVal) > strlen(rightVal) ? strlen(leftVal) : strlen(rightVal);
 	int resBuf[len0];

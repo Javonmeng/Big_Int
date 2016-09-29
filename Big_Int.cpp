@@ -1,10 +1,9 @@
 #include "Big_Int.h"
 using namespace std;
-char str1[MAXN],str2[MAXN],res[MAX];
+char str1[MAXN],str2[MAXN],res[MAX];//提前开辟内存 
 
 
-int Inspect(char *s)
-{
+int Inspect(char *s){//检查操作数 
 	int i=0;
 	if (s==NULL){
 		printf("INPUT ERROR\n");
@@ -27,7 +26,7 @@ int Inspect(char *s)
 	}
 	return OK;	
 }
-int InspectOp(char op){
+int InspectOp(char op){//检查运算符 
 	if(op=='+'||op=='-'||op=='*'||op=='/'){		
 	
 		return OK;
@@ -43,11 +42,11 @@ int main(){
 	char op,ch;
 	FILE *fp;
 	int i=0;
-	if((fp = fopen("data.txt","rt")) == NULL){
+	if((fp = fopen("data.txt","rt")) == NULL){//读入左操作数 
 		printf("OPEN ERROR\n");
 	}
 	ch = fgetc(fp);
-	while(ch != EOF){
+	while(ch != EOF){//读入右操作数 
 		str1[i] = ch;
 		i++;
 		ch = fgetc(fp);
@@ -75,7 +74,7 @@ int main(){
 
 	if(Inspect(str1)&&Inspect(str2)&&InspectOp(op)){
 	
-   	switch(op){
+   	switch(op){//根据操作数运算 
    		case '+':
    			Big_Add(str1,str2,res);
    			printf("%s\n",res);

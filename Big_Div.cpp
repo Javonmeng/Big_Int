@@ -1,4 +1,4 @@
-void mul(char *Val, char *res, int x){//xÎªÒ»Î»ÕûÊı 
+void mul(char *Val, char *res, int x){//xÎªÒ»Î»ÕûÊı£¬ÔËËã¹ı³ÌÖĞ»ñÈ¡ÉÌ 
 	int len0 = strlen(Val);
 	int tmp[len0 ++];
 	tmp[len0-1]=0;
@@ -26,6 +26,10 @@ void Div(char *leftVal, char *rightVal, int &res, char *extra){//±»³ıÊıÖ»±È³ıÊı¶
 		res = 0;
 		extra=leftVal;
 	}
+	else if(strcmp( leftVal, rightVal ) == 0){
+		res = 1;
+		extra[0] = '0', extra[1] = '\0';
+	}
 	else{
 	while(res <= 9){
 		mul(rightVal, tmp, res);
@@ -44,7 +48,7 @@ void Div(char *leftVal, char *rightVal, int &res, char *extra){//±»³ıÊıÖ»±È³ıÊı¶
 	extra[maxlen] = '\0';
 	}
 } 
-void Big_Div(char *leftVal, char *rightVal, char *res, char *extra){
+void Big_Div(char *leftVal, char *rightVal, char *res, char *extra){//Ä£ÄâÊúÊ½³ı·¨ÔËËã 
 	int len1,len2,c,i;
 	len1 = strlen(leftVal), len2 = strlen(rightVal);
 	char tmp[len2+1];
