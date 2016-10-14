@@ -9,6 +9,8 @@
 #define NO 0
 #define OK 1
 #define ERROR 0
+
+
 ////////*****¼Ó¼õ·¨´úÂë²¿·Ö¿ªÊ¼*******/////////
 int maxlen;
 
@@ -431,6 +433,7 @@ void Div(char *leftVal, char *rightVal, int &res, char *extra) {//±»³ıÊıÖ»±È³ıÊı
 		extra[maxlen] = '\0';
 	}
 }
+
 void Big_Div(char *leftVal, char *rightVal, char *res, char *extra) {//Ä£ÄâÊúÊ½³ı·¨ÔËËã 
 	int len1, len2, c, i;
 	len1 = strlen(leftVal), len2 = strlen(rightVal);
@@ -484,13 +487,10 @@ void Big_Div(char *leftVal, char *rightVal, char *res, char *extra) {//Ä£ÄâÊúÊ½³
 	}
 
 }
-
-
-
+//////////********³ı·¨½áÊø******///////////////////////////////
 
 using namespace std;
 char str1[MAXN], str2[MAXN], res[MAX];//ÌáÇ°¿ª±ÙÄÚ´æ 
-
 
 int Inspect(char *s) {//¼ì²é²Ù×÷Êı 
 	int i = 0;
@@ -512,6 +512,7 @@ int Inspect(char *s) {//¼ì²é²Ù×÷Êı
 	}
 	return OK;
 }
+
 int InspectOp(char *op) {//¼ì²éÔËËã·û 
 	if ((op[0] == '+' || op[0]== '-' || op[0] == '*' || op[0] == '/') && op[1] == '\0') {
 
@@ -522,6 +523,7 @@ int InspectOp(char *op) {//¼ì²éÔËËã·û
 		return ERROR;
 	}
 }
+
 int main() {
 	char op[100];
 	char tmp[MAX];
