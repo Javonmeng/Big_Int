@@ -407,7 +407,12 @@ void Div(char *leftVal, char *rightVal, int &res, char *extra) {//±»³ıÊıÖ»±È³ıÊı
 	res = 1;
 	if (!isLeftBigger(leftVal, rightVal)) {
 		res = 0;
-		extra = leftVal;
+		int i = 0;
+		while (leftVal[i] != '\0')
+		{
+			extra[i] = leftVal[i];
+			i++;
+		}
 	}
 	else if (strcmp(leftVal, rightVal) == 0) {
 		res = 1;
@@ -434,11 +439,12 @@ void Div(char *leftVal, char *rightVal, int &res, char *extra) {//±»³ıÊıÖ»±È³ıÊı
 	}
 }
 
-void Big_Div(char *leftVal, char *rightVal, char *res, char *extra) {//Ä£ÄâÊúÊ½³ı·¨ÔËËã 
+int Big_Div(char *leftVal, char *rightVal, char *res, char *extra) {//Ä£ÄâÊúÊ½³ı·¨ÔËËã 
 	int len1, len2, c, i;
 	len1 = strlen(leftVal), len2 = strlen(rightVal);
 	if (len2 == 1 && rightVal[0] == '0') {
 		printf("INPUT ERROR\n");
+		return 0;
 	}
 	else if (len1 == 1 && leftVal[0] == '0') {
 		res[0] = '0';
@@ -449,7 +455,12 @@ void Big_Div(char *leftVal, char *rightVal, char *res, char *extra) {//Ä£ÄâÊúÊ½³
 	else if (len1 < len2) {
 		res[0] = '0';
 		res[1] = '\0';
-		extra = leftVal;
+		int i=0; 
+		while (leftVal[i]!='\0')
+		{
+			extra[i] = leftVal[i];
+			i++;
+		}
 	}
 	else if (len1 == len2) {
 		Div(leftVal, rightVal, c, extra);
@@ -481,16 +492,18 @@ void Big_Div(char *leftVal, char *rightVal, char *res, char *extra) {//Ä£ÄâÊúÊ½³
 			res[i] = res[j];
 		res[i] = '\0';
 	}
-	if (extra[0] == '\0') {
+	if (extra[0] == '\0') 
+	{
 		extra[0] = '0';
 		extra[1] = '\0';
 	}
+	return OK;
 
 }
 //////////********³ı·¨½áÊø******///////////////////////////////
 
 using namespace std;
-char str1[MAXN], str2[MAXN], res[MAX];//ÌáÇ°¿ª±ÙÄÚ´æ 
+char str1[MAXN], str2[MAXN], res[MAX],extra[MAXN];;//ÌáÇ°¿ª±ÙÄÚ´æ 
 
 int Inspect(char *s) {//¼ì²é²Ù×÷Êı 
 	int i = 0;
@@ -527,20 +540,13 @@ int InspectOp(char *op) {//¼ì²éÔËËã·û
 int main() {
 	char op[100];
 	char tmp[MAX];
-	while (1)
+	while (gets_s(str1)!= NULL
+	&&gets_s(str2)!= NULL
+	&&gets_s(op)!= NULL
+	)
 	{
-		printf("INPUT LEFTOP:");
-		gets_s(str1);
-		printf("INPUT RIGHTOP:");
-		gets_s(str2);
-		printf("INPUT OPERATOR:");
-		gets_s(op);
-
-
-		printf("%s\n", str1);
-		printf("%s\n", str2);
-		printf("%c\n", op[0]);
-
+		res[0] = '\0';
+		extra[0] = '\0';
 		if (Inspect(str1) && Inspect(str2) && InspectOp(op)) {
 			switch (op[0]) {//¸ù¾İ²Ù×÷ÊıÔËËã 
 			case '+':
@@ -571,10 +577,11 @@ int main() {
 				break;
 
 			case '/':
-				char extra[MAXN];
-				Big_Div(str1, str2, res, extra);
-				printf("%s\n", res);
-				printf("%s\n", extra);
+				if (Big_Div(str1, str2, res, extra))
+				{
+					printf("%s ", res);
+					printf("%s\n", extra);
+				}
 				break;
 
 			}
